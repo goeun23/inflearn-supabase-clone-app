@@ -1,7 +1,5 @@
-import Image from "next/image";
+import UI from "./ui"
 
 export default function Home() {
-  return (
-    <div>Dropbox clone</div>
-  );
+  return <UI />
 }
