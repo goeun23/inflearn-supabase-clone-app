@@ -4,8 +4,9 @@ import "./globals.css"
 import { ThemeProvider } from "config/material-tailwind-theme-provider"
 import ReactQueryClientProviders from "config/ReactQueryClientProvider"
 import RecoilProvider from "config/RecoilProvider"
-import Header from "./components/Header"
-import Footer from "./components/Footer"
+import MainLayout from "./components/layouts/MainLayout"
+import Auth from "./components/auth"
+import { Main } from "node_modules/next/document"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }) {
+  const loggedIn = false
   return (
     <ThemeProvider>
       {/* @ts-ignore */}
@@ -30,9 +32,7 @@ export default function RootLayout({ children }) {
         <RecoilProvider>
           <ReactQueryClientProviders>
             <body className={inter.className}>
-              <Header />
-              {children}
-              <Footer />
+              {loggedIn ? <MainLayout>{children}</MainLayout> : <Auth />}
             </body>
           </ReactQueryClientProviders>
         </RecoilProvider>
